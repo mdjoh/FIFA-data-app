@@ -64,17 +64,19 @@
     <div class="ui container">
         <a href="/" class="header item">
             <!--<img class="logo" src="assets/images/logo.png">-->
-            Rate Prediction of a Soccer Player
+            Player Prediction
         </a>
-        <a href="/" class="item">Home</a>
+        <a href="/current_rate_prediction" class="item">Current Rate Prediction</a>
+        <a href="/future_rate_prediction" class="item">Future Rate Prediction</a>
     </div>
+    
 </div>
 
 <div class="ui main text container">
 
     <h1 class="ui header">One-Click Prediction</h1>
 
-    <form class="ui form" action="/overall/overall_prediction" method="post">
+    <form class="ui form" action="/future_rate_prediction/overall_prediction" method="post">
         <div class="field">
             <label>Year</label>
             <input type="text" name="year">

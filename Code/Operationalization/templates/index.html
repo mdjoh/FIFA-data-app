@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Site Properties -->
-    <title>Fixed Menu Example - Semantic</title>
+    <title>Player Prediction</title>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/components/reset.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dist/components/site.css') }}">
@@ -62,17 +62,20 @@
             <!--<img class="logo" src="assets/images/logo.png">-->
             Player Prediction
         </a>
-        <a href="/" class="item">Home</a>
+        <a href="/current_rate_prediction" class="item">Current Rate Prediction</a>
+        <a href="/future_rate_prediction" class="item">Future Rate Prediction</a>
     </div>
+    
 </div>
 
 <div class="ui main text container">
 
     <h1 class="ui header">One-Click Player Prediction</h1>
-
-    <a href='/overall'>Rate Prediction</a>
+    <a  href='/current_rate_prediction'>Calculate Current rate</a>
     <br/>
-    <a href='rate_prediction'>Calculate Current rate</a>
+    <a  href='/future_rate_prediction'>Rate Prediction</a>
+    <br/>
+    
 
 </div>
 

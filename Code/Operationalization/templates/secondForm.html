@@ -62,68 +62,67 @@
             <!--<img class="logo" src="assets/images/logo.png">-->
             Player Prediction
         </a>
-        <a href="/" class="item">Home</a>
+        <a href="/current_rate_prediction" class="item">Current Rate Prediction</a>
+        <a href="/future_rate_prediction" class="item">Future Rate Prediction</a>
     </div>
+    
 </div>
 
 <div class="ui main text container">
 
     <h1 class="ui header">One-Click Player Prediction</h1>
 
-    <form class="ui form" action="/predict_price" method="post">
+    <form class="ui form" action="/current_rate_prediction/overall_prediction" method="post">
         <div class="field">
-            <label>Bedrooms</label>
-            <select class="ui selection dropdown" name="bedrooms">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <label>Dribbling</label>
+            <input type="text" name="Dribbling">
         </div>
         <div class="field">
-            <label>Bathrooms</label>
-            <select class="ui selection dropdown" name="bathrooms">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
+            <label>SprintSpeed</label>
+            <input type="text" name="SprintSpeed">
         </div>
         <div class="field">
-            <label>Square foot</label>
-            <input type="text" name="sqft_living15">
+            <label>ShortPassing</label>
+            <input type="text" name="ShortPassing">
         </div>
         <div class="field">
-            <label>Grade</label>
-            <select class="ui selection dropdown" name="grade">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-            </select>
+            <label>LongPassing</label>
+            <input type="text" name="LongPassing">
         </div>
         <div class="field">
-            <label>Conditions</label>
-            <select class="ui selection dropdown" name="condition">
+            <label>Strength</label>
+            <input type="text" name="Strength">
+        </div>
+        <div class="field">
+            <label>Position</label>
+            <select class="ui selection dropdown" name="Position">
                 <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="RS">RS</option>
+                <option value="LS">LS</option>
+                <option value="RF">RF</option>
+                <option value="LF">LF</option>
+                <option value="CF">CF</option>
+                <option value="ST">ST</option>
+                <option value="RAM">RAM</option>
+                <option value="LAM">LAM</option>
+                <option value="CAM">CAM</option>
+                <option value="RM">RM</option>
+                <option value="RW">RW</option>
+                <option value="LM">LM</option>
+                <option value="LW">LW</option>
+                <option value="CM">CM</option>
+                <option value="LCM">LCM</option>
+                <option value="RCM">RCM</option>
+                <option value="CDM">CDM</option>
+                <option value="LDM">LDM</option>
+                <option value="RDM">RDM</option>
+                <option value="RB">RB</option>
+                <option value="RWB">RWB</option>
+                <option value="LB">LB</option>
+                <option value="LWB">LWB</option>
+                <option value="CB">CB</option>
+                <option value="LCB">LCB</option>
+                <option value="RCB">RCB</option>
             </select>
         </div>
         <button class="ui button" type="submit">Submit</button>

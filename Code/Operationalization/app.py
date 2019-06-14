@@ -11,15 +11,13 @@ app = Flask(__name__, static_url_path='/static/')
 def form():
     return render_template('index.html')
 
-@app.route('/overall')
+@app.route('/future_rate_prediction')
 def firstForm():
 	return render_template('firstForm.html')
 
-@app.route('/rate_prediction')
-def secondForm():
-	return render_template('secondForm.html')
 
-@app.route('/overall/overall_prediction',methods=['POST', 'GET'])
+
+@app.route('/future_rate_prediction/overall_prediction',methods=['POST', 'GET'])
 def overall_prediction():
 
 	#get the parameters
@@ -49,48 +47,78 @@ def overall_prediction():
 	position = df['Position'].tolist()[0]
 
 	if position in forward:
-		model = joblib.load('../../Data/Model/Forward_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Forward_Model.pkl')
 	elif position in attack_mid:
-		model = joblib.load('../../Data/Model/am_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/am_Model.pkl')
 	elif position in wings:
-		model = joblib.load('../../Data/Model/Wings_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Wings_Model.pkl')
 	elif position in central_mid:
-		model = joblib.load('../../Data/Model/Cm_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Cm_Model.pkl')
 	elif position in defensive_mid:
-		model = joblib.load('../../Data/Model/Dm_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Dm_Model.pkl')
 	elif position in fullback:
-		model = joblib.load('../../Data/Model/Fullback_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Fullback_Model.pkl')
 	elif position in cb_def:
-		model = joblib.load('../../Data/Model/Cb_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Cb_Model.pkl')
 	elif position in gk:
-		model = joblib.load('../../Data/Model/Gk_Model.pkl')
+		model = joblib.load('../../Data/Model/Future/Gk_Model.pkl')
 
 
 	prediction = model.predict([[age,potential]])
 	predicted_overall = prediction.round(1)[0]
 
-	return render_template('rateresults.html', name=str(name),  age=int(age), potential=int(potential), current_rate = current_rate, predicted_rate=int(predicted_overall))
+	return render_template('future_rate_prediction.html', name=str(name),  age=int(age), potential=int(potential), current_rate = current_rate, predicted_rate=int(predicted_overall))
 
 
+@app.route('/current_rate_prediction')
+def secondForm():
+	return render_template('secondForm.html')
 
-@app.route('/predict_overall', methods=['POST', 'GET'])
-def predict_overall():
-    # get the parameters
-    age = float(request.form['age'])
-    
-    # load the model and predict
-    model = joblib.load('model/linear_regression.pkl')
-    prediction = model.predict([[bedrooms, bathrooms, sqft_living15, grade, condition]])
-    predicted_price = prediction.round(1)[0]
+@app.route('/current_rate_prediction/overall_prediction', methods=['POST', 'GET'])
+def current_overall_prediction():
+	#get the parameters
+	Dribbling = float(request.form['Dribbling'])
+	SprintSpeed = float(request.form['SprintSpeed'])
+	ShortPassing = float(request.form['ShortPassing'])
+	LongPassing = float(request.form['LongPassing'])
+	Strength = float(request.form['Strength'])
+	position = str(request.form['Position'])
+	# group similar positions together
+	forward = ['RS', 'LS', 'RF', 'LF', 'CF', 'ST']
 
-    return render_template('results.html',
-                           bedrooms=int(bedrooms),
-                           bathrooms=int(bathrooms),
-                           sqft_living15=int(sqft_living15),
-                           grade=int(grade),
-                           condition=int(condition),
-                           predicted_price="{:,}".format(predicted_price)
-                           )
+	attack_mid = ['RAM', 'LAM', 'CAM']
+	wings = ['RM', 'RW', 'LM', 'LW']
+
+	central_mid = ['CM', 'LCM', 'RCM']
+	defensive_mid = ['CDM', 'LDM', 'RDM']
+
+	fullback = ['RB', 'RWB', 'LB', 'LWB']
+	cb_def = ['CB', 'LCB', 'RCB']
+
+	gk = ['GK']
+
+	if position in forward:
+		model = joblib.load('../../Data/Model/Current/Forward_Model.pkl')
+	elif position in attack_mid:
+		model = joblib.load('../../Data/Model/Current/am_Model.pkl')
+	elif position in wings:
+		model = joblib.load('../../Data/Model/Current/Wings_Model.pkl')
+	elif position in central_mid:
+		model = joblib.load('../../Data/Model/Current/Cm_Model.pkl')
+	elif position in defensive_mid:
+		model = joblib.load('../../Data/Model/Current/Dm_Model.pkl')
+	elif position in fullback:
+		model = joblib.load('../../Data/Model/Current/Fullback_Model.pkl')
+	elif position in cb_def:
+		model = joblib.load('../../Data/Model/Current/Cb_Model.pkl')
+	elif position in gk:
+		model = joblib.load('../../Data/Model/Current/Gk_Model.pkl')
+
+
+	prediction = model.predict([[Dribbling,SprintSpeed,ShortPassing,LongPassing,Strength]])
+	predicted_overall = prediction.round(1)[0]
+
+	return render_template('current_rate_prediction.html',position=str(position), Dribbling=int(Dribbling),  SprintSpeed=int(SprintSpeed), ShortPassing=int(ShortPassing), LongPassing = int(LongPassing), Strength=int(Strength),predicted_overall=predicted_overall)
 
 
 if __name__ == '__main__':
