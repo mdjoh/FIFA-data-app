@@ -23,7 +23,7 @@ def overall_prediction():
 	#get the parameters
 	position = int(request.form['name'])-1
 	year = float(request.form['year'])
-	df=pd.read_excel('Data/Processed/Data_with_Potential.xlsx')
+	df=pd.read_csv('Data/Processed/Data_with_Potential.csv')
 	name = str(df.iloc[position,0])
 	df=df[df['Name']==name]
 	age = year + df['Age'].tolist()[0]
@@ -121,5 +121,5 @@ def current_overall_prediction():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=8080, debug = True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug = True)
